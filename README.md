@@ -25,7 +25,7 @@ If you would like to use client rendered components you will need to utilize the
 
 The code for these apis can be found in the [app/api](./app/api/) directory.
 
-You can opt not to use the API and instead use server rendered components utilizing the data fetchers defined in `lib/data`.
+You can opt not to use the API and instead use server rendered components utilizing the data fetchers defined in [lib/data.ts](./lib/data.ts).
 
 ### Database Setup
 
@@ -41,9 +41,9 @@ POSTGRES_PASSWORD=
 POSTGRES_DATABASE=
 ```
 
-Once the database is setup and the applicationcan connect you can [seed](https://en.wikipedia.org/wiki/Database_seeding) the database usuing the `GET /api/seed` endpoint. This will create necessary database tables and load starter data. See the code [here](./app/api/seed/route.ts).
+Once the database is setup and the application can connect, you will need to [seed](https://en.wikipedia.org/wiki/Database_seeding) the database usuing the `GET /api/seed` endpoint. This will create necessary database tables and load starter data. See the code [here](./app/api/seed/route.ts).
 
-Helper methods for interactinv with the database are already implemented in [/lib/data.ts](./lib/data.ts)
+Helper methods for interacting with the database are already implemented in [lib/data.ts](./lib/data.ts)
 
 ### Authentication
 
