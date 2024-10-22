@@ -41,7 +41,7 @@ POSTGRES_PASSWORD=
 POSTGRES_DATABASE=
 ```
 
-Once the database is setup and the application can connect, you will need to [seed](https://en.wikipedia.org/wiki/Database_seeding) the database usuing the `GET /api/seed` endpoint. This will create necessary database tables and load starter data. See the code [here](./app/api/seed/route.ts).
+Once the database is setup and the application can connect, you will need to [seed](https://en.wikipedia.org/wiki/Database_seeding) the database using the `GET /api/seed` endpoint. This will create necessary database tables and load starter data. See the code [here](./app/api/seed/route.ts).
 
 Helper methods for interacting with the database are already implemented in [lib/data.ts](./lib/data.ts)
 
