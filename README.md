@@ -50,7 +50,7 @@ Helper methods for interacting with the database are already implemented in [lib
 The applicaiton expects [Auth.js](https://authjs.dev/) to be configured for the application to authenticate and authorize users. Authentication is configured in [auth.ts](auth.ts) You will need to add the following env variables:
 
 ```
-# Run `npx auth` to set value. See https://cli.authjs.dev
+# Run `npx auth secret` to set value. See https://cli.authjs.dev
 AUTH_SECRET=
 
 
