@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import Favorites from './Favorites';
 import WatchLater from './WatchLater';

@@ -16,7 +16,7 @@ export default function Sidebar() {
         >
             <nav
                 className={`flex flex-col py-4 transition-all duration-300 ${isExpanded ? "items-start px-4" : "items-center"
-                    } space-y-6`}
+                    } space-y-6 font-inter`}
             >
 
                 <Link href="/home" className="flex items-center space-x-3">
