@@ -17,7 +17,8 @@ const Favorites: React.FC<FavoritesProps> = ({ movieId }) => {
                     throw new Error(`Error! Status: ${response.status}`);
                 }
                 const data = await response.json();
-                setFavorites(new Set(data.map((movie: { id: number }) => movie.id)));
+                console.log('Fetched favorites data:', data);
+                setFavorites(new Set(data.favorites.map((movie: { id: number }) => movie.id)));
             } catch (error) {
                 console.error('Error fetching favorites:', error);
             }

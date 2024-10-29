@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import MovieList from './components/MovieList';
+import MovieList from "./components/MovieList";
 
 export default function Page() {
   const { data: session, status } = useSession();
@@ -19,8 +19,8 @@ export default function Page() {
   }
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="container mx-auto px-4 py-8">
       <MovieList />
     </div>
-  )
+  );
 }

@@ -17,7 +17,8 @@ const WatchLater: React.FC<WatchLaterProps> = ({ movieId }) => {
                     throw new Error(`Error! Status: ${response.status}`);
                 }
                 const data = await response.json();
-                setWatchLater(new Set(data.map((movie: { id: number }) => movie.id)));
+                console.log('Fetched Watch Later data:', data);
+                setWatchLater(new Set(data.watchLater.map((movie: { id: number }) => movie.id)));
             } catch (error) {
                 console.error('Error fetching watch later:', error);
             }
