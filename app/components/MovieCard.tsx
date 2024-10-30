@@ -33,6 +33,21 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         }
     };
 
+    const handleWatchLaterToggle = async () => {
+        console.log(`Toggling watch later for movie ID: ${movie.id}`);
+        const response = isClockFilled
+            ? await fetch(`/api/watch-later/${movie.id}`, { method: 'DELETE' })
+            : await fetch(`/api/watch-later/${movie.id}`, { method: 'GET' });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result.message);
+            setIsClockFilled(!isClockFilled);
+        } else {
+            console.error("Error updating watch later");
+        }
+    };
+
     return (
         <div className="relative border border-[#54f4d0] rounded-lg overflow-hidden group h-[463px] w-[463px]">
             <div
@@ -69,7 +84,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
                 <div
                     className={`cursor-pointer ${isClockFilled ? 'filled' : ''}`}
-                    onClick={() => setIsClockFilled(!isClockFilled)}
+                    onClick={handleWatchLaterToggle}
                 >
                     {isClockFilled ? (
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
