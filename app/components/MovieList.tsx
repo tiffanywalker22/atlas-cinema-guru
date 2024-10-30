@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from './MovieCard';
 import Pagination from './Pagination';
+import Filters from './Filters';
 
 interface Movie {
     id: number;
@@ -12,22 +13,27 @@ interface Movie {
     genre: string;
 }
 
+const genresList = [
+    'Romance', 'Horror', 'Drama', 'Action', 'Mystery',
+    'Fantasy', 'Thriller', 'Western', 'Sci-Fi', 'Adventure'
+];
+
 const MovieList: React.FC = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [page, setPage] = useState<number>(1);
     const [minYear, setMinYear] = useState<number>(1990);
     const [maxYear, setMaxYear] = useState<number>(2024);
-    const [genres, setGenres] = useState<string>('Romance, Horror, Drama, Action, Mystery, Fantasy, Thriller, Western, Sci-Fi, Adventure');
+    const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const response = await fetch(`/api/titles?page=${page}&minYear=${minYear}&maxYear=${maxYear}&genres=${genres}`);
+                const response = await fetch(`/api/titles?page=${page}&minYear=${minYear}&maxYear=${maxYear}&genres=${selectedGenres.join(',')}`);
                 if (!response.ok) {
                     throw new Error(`Error! Status: ${response.status}`);
                 }
                 const data = await response.json();
-                console.log("Fetched titles:", data.title);
                 setMovies(data.title);
             } catch (error) {
                 console.error('Error fetching movies:', error);
@@ -35,13 +41,31 @@ const MovieList: React.FC = () => {
         };
 
         fetchMovies();
-    }, [page, minYear, maxYear, genres]);
+    }, [page, minYear, maxYear, selectedGenres]);
+
+    const filteredMovies = movies.filter(movie => {
+        const matchesTitle = searchTerm ? movie.title.toLowerCase().includes(searchTerm) : true;
+        const matchesYear = parseInt(movie.released) >= minYear && parseInt(movie.released) <= maxYear;
+        const matchesGenre = selectedGenres.length === 0 || selectedGenres.includes(movie.genre);
+
+        return matchesTitle && matchesYear && matchesGenre;
+    });
+
 
     return (
         <div className="space-y-6">
             <h1 className="text-3xl font-bold text-center mb-6">Movies</h1>
+            <Filters
+                setSearchTerm={setSearchTerm}
+                setMinYear={setMinYear}
+                setMaxYear={setMaxYear}
+                genresList={genresList}
+                selectedGenres={selectedGenres}
+                setSelectedGenres={setSelectedGenres}
+            />
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {movies.map((movie) => (
+                {filteredMovies.map((movie) => (
                     <div className="flex justify-center" key={movie.id}>
                         <MovieCard movie={movie} />
                     </div>

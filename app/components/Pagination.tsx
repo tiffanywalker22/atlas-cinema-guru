@@ -14,13 +14,13 @@ const Pagination: React.FC<PaginationProps> = ({ page, setPage }) => {
                 <button
                     onClick={() => setPage(prev => Math.max(prev - 1, 1))}
                     disabled={page === 1}
-                    className="w-24 px-4 py-2 bg-[#1ED2AF] font-inter text-[#00003c] rounded-l-md disabled:opacity-50"
+                    className="w-248 px-6 py-3 bg-[#1ED2AF] font-inter text-[#00003c] rounded-l-full disabled:opacity-50"
                 >
                     Previous
                 </button>
                 <button
                     onClick={() => setPage(prev => prev + 1)}
-                    className="w-24 px-4 py-2 bg-[#1ED2AF] font-inter text-[#00003c] rounded-r-md"
+                    className="w-28 px-6 py-3 bg-[#1ED2AF] font-inter text-[#00003c] rounded-l-none rounded-r-full"
                 >
                     Next
                 </button>
