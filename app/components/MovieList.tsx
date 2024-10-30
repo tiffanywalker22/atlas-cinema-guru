@@ -29,7 +29,11 @@ const MovieList: React.FC = () => {
     useEffect(() => {
         const fetchMovies = async () => {
             try {
-                const response = await fetch(`/api/titles?page=${page}&minYear=${minYear}&maxYear=${maxYear}&genres=${selectedGenres.join(',')}`);
+                const genreFilter = selectedGenres.length ? `&genres=${selectedGenres.join(",")}` : "";
+                const searchFilter = searchTerm ? `&query=${encodeURIComponent(searchTerm)}` : "";
+                const yearFilters = (minYear && maxYear) ? `&minYear=${minYear}&maxYear=${maxYear}` : "";
+
+                const response = await fetch(`/api/titles?page=${page}${yearFilters}${genreFilter}${searchFilter}`);
                 if (!response.ok) {
                     throw new Error(`Error! Status: ${response.status}`);
                 }
@@ -54,7 +58,6 @@ const MovieList: React.FC = () => {
 
     return (
         <div className="space-y-6">
-            <h1 className="text-3xl font-bold text-center mb-6">Movies</h1>
             <Filters
                 setSearchTerm={setSearchTerm}
                 setMinYear={setMinYear}
