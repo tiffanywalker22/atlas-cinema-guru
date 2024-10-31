@@ -34,7 +34,7 @@ const Filters: React.FC<FiltersProps> = ({
                 <input
                     type="text"
                     placeholder="Search Movies..."
-                    className="rounded-full bg-[#00003c] text-white border-2 border-[#54f4d0] p-2 w-80 outline-none mb-4 font-inter"
+                    className="rounded-full bg-[#00003c] text-white border-2 border-[#54f4d0] p-2 w-full outline-none mb-4 font-inter"
                     onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
                 />
 
@@ -45,7 +45,7 @@ const Filters: React.FC<FiltersProps> = ({
                             <input
                                 type="number"
                                 placeholder={label}
-                                className="rounded-full bg-[#00003c] text-white border-2 border-[#54f4d0] p-2 w-40 outline-none font-inter"
+                                className="rounded-full bg-[#00003c] text-white border-2 border-[#54f4d0] p-2 w-full outline-none font-inter"
                                 onChange={(e) => index === 0 ? setMinYear(Number(e.target.value)) : setMaxYear(Number(e.target.value))}
                             />
                         </div>
@@ -55,11 +55,11 @@ const Filters: React.FC<FiltersProps> = ({
 
             <div className="flex-1 p-2 rounded-lg bg-[#00003c] ml-4">
                 <h3 className="mb-2 text-white font-inter">Genres</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-6">
                     {genresList.map((genre) => (
                         <button
                             key={genre}
-                            className={`rounded-full bg-${selectedGenres.includes(genre) ? '#39CCCC' : '#001F3F'} text-white border-2 border-[#54f4d0] p-2 px-4 cursor-pointer transition-all duration-200 w-[calc(20%-8px)] font-inter`}
+                            className={`rounded-full bg-${selectedGenres.includes(genre) ? '#39CCCC' : '#001F3F'} text-white border-2 border-[#54f4d0] p-2 px-4 cursor-pointer transition-all duration-200 w-[calc(20%-8px)] font-inter mb-11`}
                             onClick={() => handleGenreChange(genre)}
                         >
                             {genre}
